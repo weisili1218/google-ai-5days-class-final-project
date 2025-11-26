@@ -1,3 +1,2 @@
-write "python3 main.py"in the terminal
-and write 1 or 2 or 3 or 4 in the chatbox
-enjoy your ai learning partner
+how to use my ai ?
+write "python3 main.py"in the terminal,and write 1 or 2 or 3 or 4 in the chatbox to choose the agent, enjoy your ai learning partner
