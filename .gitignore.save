@@ -1,0 +1,10 @@
+# 忽略所有環境配置和金鑰檔案
+.env
+config.pyc
+
+# 忽略 Python 相關檔案和資料夾
+__pycache__/
+*.pyc
+*.swp
+venv/  # 如果您使用了虛擬環境，請忽略它
+
