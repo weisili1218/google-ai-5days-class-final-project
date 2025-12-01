@@ -57,3 +57,21 @@ Ensure you use the **same Python environment** for installation as you use for e
 ```bash
 # Install required libraries
 python3 -m pip install python-dotenv google-genai
+
+### Step 2: Set the API Key (CRITICAL)
+
+To prevent key leaks, the API key must be set via the `.env` file.
+
+1.  Create a file named **`.env`** in your project root directory.
+2.  Paste your **new and valid** API key into the file:
+    ```
+    GEMINI_API_KEY="YOUR_API_KEY_HERE"
+    ```
+    *(Ensure `.gitignore` includes `.env` to prevent accidental commits.)*
+
+### Step 3: Run the Application
+
+Ensure you are inside the `study_buddy` directory, and execute:
+
+```bash
+python3 main.py
