@@ -72,10 +72,10 @@ python3 -m pip install python-dotenv google-genai
 
 ### **Step 2: Configure Your API Key (Important)**
 
-Create a `.env` file in the project root with:
+run:
 
 ```
-GEMINI_API_KEY="YOUR_API_KEY_HERE"
+export GEMINI_API_KEY="AIzaSyAVLKQDkNd4B9w2nAuyEjsseM5L__9x6Es"
 ```
 
 > Ensure `.gitignore` includes `.env`
