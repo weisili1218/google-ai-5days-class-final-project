@@ -78,8 +78,6 @@ run:
 export GEMINI_API_KEY="AIzaSyAVLKQDkNd4B9w2nAuyEjsseM5L__9x6Es"
 ```
 
-> Ensure `.gitignore` includes `.env`
-
 ---
 
 ### **Step 3: Run the Application**
