@@ -1,77 +1,127 @@
 # 🤖 AI Learning Partner - Multi-Agent Study Companion
 
-**Project Status:** Functional (CLI Interface) | **Underlying Model:** Google Gemini (via `google-genai` SDK)
+## Project Status
 
-A professional, modular AI learning system designed for focused study and time management. It utilizes a **simulated Multi-Agent architecture** with dedicated Python modules and Session Persistence, all powered by **Google Gemini**.
+* **Running**: CLI Interface
+* **Base Model**: Google Gemini (via google-genai SDK)
+
+This is a professional, modular AI learning system designed for deep learning and time management. It leverages Google Gemini, a multi-agent architecture, and session persistence to provide a coherent, context-aware learning experience.
 
 ---
 
-## ✨ Core Features & Techniques
+## ✨ Key Features & Techniques
 
-This project demonstrates Agentic capabilities achieved through highly specialized Python module functions, leveraging the Google Gen AI SDK.
+This project demonstrates how to use the Google Gen AI SDK to build a multi-agent system with agentic capabilities, organized through clearly separated Python modules.
 
-### 1. Agent Specialization & Routing 🎛️
-The system manages distinct modes via the main program (`main.py`) interface, routing user choices to the appropriate specialized Agent module.
-* **Mechanism:** CLI options allow the user to select the specialized mode (Tutoring, Planning, or Chat).
-* **Division of Labor:** Each Agent module uses a unique **System Instruction** to set its role (e.g., a "Strict Planner" or a "Patient Tutor"), ensuring consistent and high-quality output for its specific task.
+### 1. Multi-Agent Routing 🎛️
+
+The main script `main.py` routes user-selected CLI inputs to the correct specialized Agent module.
+
+* Interface: CLI menu to switch between teaching, planning, and chat modes
+* Modularization: Each Agent uses its own System Instruction to maintain consistent, domain-specific responses
 
 ### 2. Context-Aware Session Persistence 💬
-The current dialogue history is maintained to ensure conversational flow and coherence.
-* **Technique: Session Persistence.**
-* **How it works:** The Chat mode (`chat_buddy.py`) utilizes the dedicated **Gemini API Chat Session** feature to maintain continuous memory, allowing the AI to recall previous turns within the current conversation.
 
-### 3. Functional Tool Utilization 🛠️
-Agents execute complex tasks by calling structured Python functions.
-* **API Layer:** The shared `gemini_client.py` module handles all API connection and communication, acting as the bridge for all Agent functions.
-* **Planning Functionality:** The `planner.py` module employs a dedicated Planner System Instruction to generate organized and optimized schedules.
+Conversation history is saved locally in `chat_sessions.json`.
+
+* Technique: Session Persistence
+* Functionality: `chat_buddy.py` uses Gemini Chat Sessions to maintain conversational context
+
+### 3. Advanced Tool Calling (Tools) 🛠️
+
+Agents execute tasks through Python functions, supported by the shared `gemini_client.py` for all API requests.
+
+* The planning logic is handled by `planner.py`, which generates optimized daily schedules using role-based instructions
 
 ---
 
 ## 🏗️ Project Architecture
 
-The project adopts a modular design, with responsibilities clearly separated across Python files for maintainability and clarity.
+The project follows a modular structure, with each file focusing on a specific responsibility:
 
-| File / Module | Role | Key Functionality |
-| :--- | :--- | :--- |
-| **`main.py`** | **Orchestrator** | Program entry point; manages the CLI, and routes user selection to the correct Agent module. |
-| **`gemini_client.py`** | **API Client** | Handles all connectivity and communication with the Gemini API (`generate_text`, `start_chat_session`). |
-| **`config.py`** | **Configuration** | Responsible for loading the `.env` file and retrieving the `GEMINI_API_KEY`. |
-| **`chat_buddy.py`** | **Chat Agent** | Implements the free-form conversation logic using the dedicated `Chat Session`. |
-| **`study_guide.py`** | **Tutoring Agent** | Implements the educational function, setting a Tutor System Instruction for concept explanation and quizzing. |
-| **`planner.py`** | **Planning Agent** | Implements the time management function, setting a Planner System Instruction to generate structured schedules. |
-| **`.env`** | **Private Config** | Stores the `GEMINI_API_KEY` (MUST NOT be uploaded to GitHub). |
+| File / Module      | Responsibility           | Key Functions                                                                   |
+| ------------------ | ------------------------ | ------------------------------------------------------------------------------- |
+| `main.py`          | Orchestrator             | Entry point, CLI management, Agent routing                                      |
+| `gemini_client.py` | API Client               | Communicates with Gemini API, provides `generate_text` and `start_chat_session` |
+| `config.py`        | Configuration Management | Loads `.env` and retrieves `GEMINI_API_KEY`                                     |
+| `chat_buddy.py`    | Chat Agent               | Handles purely conversational mode with context retention                       |
+| `study_guide.py`   | Teaching Agent           | Explains concepts, guides learning, asks/answers questions                      |
+| `planner.py`       | Planning Agent           | Generates structured schedules                                                  |
+| `.env`             | Secret Config            | Stores API key (**must not be committed to GitHub**)                            |
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### **Requirements**
 
-* Python 3.8+ (The system was developed and tested using Python 3.13)
-* Your personal **Gemini API Key**.
+* Python 3.8+ (recommended: Python 3.13)
+* A personal Gemini API Key
 
-### Step 1: Install Dependencies
+---
 
-Ensure you use the **same Python environment** for installation as you use for execution:
+### **Step 1: Install Dependencies**
+
+Run this in the same Python environment used for `main.py`:
 
 ```bash
-# Install required libraries
 python3 -m pip install python-dotenv google-genai
+```
 
-### Step 2: Set the API Key (CRITICAL)
+---
 
-To prevent key leaks, the API key must be set via the `.env` file.
+### **Step 2: Configure Your API Key (Important)**
 
-1.  Create a file named **`.env`** in your project root directory.
-2.  Paste your **new and valid** API key into the file:
-    ```
-    GEMINI_API_KEY="YOUR_API_KEY_HERE"
-    ```
-    *(Ensure `.gitignore` includes `.env` to prevent accidental commits.)*
+Create a `.env` file in the project root with:
 
-### Step 3: Run the Application
+```
+GEMINI_API_KEY="YOUR_API_KEY_HERE"
+```
 
-Ensure you are inside the `study_buddy` directory, and execute:
+> Ensure `.gitignore` includes `.env`
+
+---
+
+### **Step 3: Run the Application**
+
+Within the `study_buddy` directory, run:
 
 ```bash
 python3 main.py
+```
+
+---
+
+### **Step 4: Start Interacting**
+
+In the CLI menu, type:
+
+* `1` → Teaching Mode
+* `2` → Planning Mode
+* `3` → Chat Mode
+
+---
+
+## 🔮 Future Improvements
+
+Upcoming possible enhancements include:
+
+### 🔍 Google Search Tool Integration
+
+Implement a Research Agent capable of performing live web searches for real-time information.
+
+### 🧠 Long-Term Memory & User Preference Storage
+
+Develop a Memory Manager to store:
+
+* User goals
+* Preferences
+* Learning progress
+
+### 🧩 Advanced Agent Framework
+
+Upgrade the current architecture to frameworks like CrewAI or similar ADK to support:
+
+* Complex multi-agent collaboration
+* Task delegation
+* Automated workflows
